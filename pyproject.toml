@@ -17,6 +17,9 @@ dependencies = [
 requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools.package-data]
+onnx_modifier = ["static/*", "templates/*"]
+
 [project.scripts]
 onnx-modifier = "onnx_modifier.flask_server:launch_flask_server"
 
