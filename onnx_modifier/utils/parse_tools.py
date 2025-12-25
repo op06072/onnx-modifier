@@ -1,7 +1,17 @@
 import numpy as np
 from typing import cast
-from onnx.mapping import NP_TYPE_TO_TENSOR_TYPE
 from onnx import TensorProto
+try:
+    from onnx.mapping import NP_TYPE_TO_TENSOR_TYPE
+except ImportError:
+    import numpy as np
+    from onnx import helper
+
+    class _NPTypeToTensorType(dict):
+        def __getitem__(self, np_type):
+            return helper.np_dtype_to_tensor_dtype(np.dtype(np_type))
+
+    NP_TYPE_TO_TENSOR_TYPE = _NPTypeToTensorType()
 
 # parse numpy values from string
 def str2np(tensor_str, tensor_type):
