@@ -14,8 +14,8 @@ dependencies = [
 ]
 
 [build-system]
-requires = ["flit_core<4"]
-build-backend = "flit_core.buildapi"
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [project.scripts]
 onnx-modifier = "onnx_modifier.flask_server:launch_flask_server"
